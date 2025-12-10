@@ -334,10 +334,10 @@
 
         // Foto-foto yang sudah disiapkan langsung (ganti dengan URL foto Anda)
         const [imageUrls] = useState([
-          "./img/foto1.jpg",
-          "./img/foto2.jpg",
-          "./img/foto3.jpg",
-          "./img/foto4.jpg",
+          "public/img/foto1.jpg",
+          "public/img/foto2.jpg",
+          "public/img/foto3.jpg",
+          "public/img/foto4.jpg",
         ]);
 
         const pages = [
@@ -354,7 +354,7 @@
 
           // Gunakan lagu "Bergema sampai Selamanya" (ganti dengan URL lagu Anda)
           // Sementara menggunakan lagu birthday sebagai placeholder
-          audioRef.current.src = "./audio/lagu.mp3";
+          audioRef.current.src = "public/audio/lagu.mp3";
           audioRef.current.loop = true;
           audioRef.current.volume = volume;
 
