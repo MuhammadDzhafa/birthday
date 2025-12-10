@@ -318,6 +318,8 @@
         const audioRef = useRef(null);
         const cakeRef = useRef(null);
 
+
+
         // Cek ukuran layar
         useEffect(() => {
           const checkMobile = () => {
@@ -347,41 +349,52 @@
           { title: "Pesan Spesial 💌", emoji: "💝" },
         ];
 
-        // Inisialisasi audio
-        useEffect(() => {
-          // Membuat elemen audio
-          audioRef.current = new Audio();
+        // Inisialisasi audio + AUTOPLAY FIX
+useEffect(() => {
+  // Buat elemen audio
+  audioRef.current = new Audio();
+  audioRef.current.src = "/audio/lagu.mp3"; // ganti sesuai file kamu
+  audioRef.current.loop = true;
+  audioRef.current.volume = volume;
 
-          // Gunakan lagu "Bergema sampai Selamanya" (ganti dengan URL lagu Anda)
-          // Sementara menggunakan lagu birthday sebagai placeholder
-          audioRef.current.src = "audio/lagu.mp3";  // tanpa slash di depan
-          audioRef.current.loop = true;
-          audioRef.current.volume = volume;
+  // Fungsi autoplay
+  const tryAutoplay = async () => {
+    try {
+      await audioRef.current.play();
+      setIsMusicPlaying(true);
+      console.log("Musik autoplay berhasil");
+    } catch (e) {
+      console.log("Autoplay diblokir, menunggu interaksi pengguna");
 
-          // Coba mulai pemutaran musik
-          const playMusic = async () => {
-            try {
-              await audioRef.current.play();
-              setIsMusicPlaying(true);
-              console.log("Musik mulai diputar");
-            } catch (error) {
-              console.log("Autoplay diblokir, menunggu interaksi pengguna");
-            }
-          };
+      // Aktifkan listener untuk memulai musik setelah user klik
+      const startOnUserGesture = () => {
+        audioRef.current.play().then(() => {
+          setIsMusicPlaying(true);
+          window.removeEventListener("click", startOnUserGesture);
+          window.removeEventListener("touchstart", startOnUserGesture);
+          console.log("Musik diputar setelah interaksi");
+        });
+      };
 
-          // Mulai musik setelah sedikit delay
-          setTimeout(() => {
-            playMusic();
-          }, 1000);
+      window.addEventListener("click", startOnUserGesture);
+      window.addEventListener("touchstart", startOnUserGesture);
+    }
+  };
 
-          // Bersihkan saat komponen unmount
-          return () => {
-            if (audioRef.current) {
-              audioRef.current.pause();
-              audioRef.current = null;
-            }
-          };
-        }, []);
+  // Coba autoplay setelah sedikit delay
+  setTimeout(() => {
+    tryAutoplay();
+  }, 800);
+
+  // Cleanup
+  return () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current = null;
+    }
+  };
+}, []);
+
 
         // Update volume saat state volume berubah
         useEffect(() => {
@@ -1133,6 +1146,9 @@
       // Render aplikasi
       const root = ReactDOM.createRoot(document.getElementById("root"));
       root.render(<BirthdayInayatul />);
+
+      
     </script>
   </body>
 </html>
+
