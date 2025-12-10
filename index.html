@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday Inayatul Maula 💙</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Dancing+Script:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(5deg);
+        }
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+      }
+      @keyframes confetti-fall {
+        to {
+          transform: translateY(100vh) rotate(720deg);
+          opacity: 0;
+        }
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.7;
+        }
+      }
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-5px);
+        }
+        75% {
+          transform: translateX(5px);
+        }
+      }
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes wiggle {
+        0%,
+        100% {
+          transform: rotate(-3deg);
+        }
+        50% {
+          transform: rotate(3deg);
+        }
+      }
+      @keyframes musicNote {
+        0%,
+        100% {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: translateY(-10px) scale(1.1);
+          opacity: 0.8;
+        }
+      }
+      
+      /* Mobile optimizations */
+      @media (max-width: 768px) {
+        .mobile-padding {
+          padding-top: 80px !important;
+        }
+        .mobile-small-text {
+          font-size: 0.875rem !important;
+        }
+      }
+    </style>
+  </head>
+  <body class="font-['Comic_Neue']">
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const { useState, useEffect, useRef } = React;
+
+      // Komponen Ikon Lucu
+      const Heart = ({ className, size = 24, fill, style, onClick }) => (
+        <svg
+          className={className}
+          width={size}
+          height={size}
+          viewBox="0 0 24 24"
+          fill={fill || "none"}
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          style={style}
+          onClick={onClick}
+        >
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+      );
+
+      const Gift = ({ className, size = 24, onClick }) => (
+        <svg
+          className={className}
+          width={size}
+          height={size}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          onClick={onClick}
+        >
+          <polyline points="20 12 20 22 4 22 4 12"></polyline>
+          <rect x="2" y="7" width="20" height="5"></rect>
+          <line x1="12" y1="22" x2="12" y2="7"></line>
+          <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+          <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+        </svg>
+      );
+
+      const Cake = ({ className, size = 24, onClick }) => (
+        <svg
+          className={className}
+          width={size}
+          height={size}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          onClick={onClick}
+        >
+          <path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"></path>
+          <path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"></path>
+          <path d="M2 21h20"></path>
+          <path d="M7 8v3"></path>
+          <path d="M12 8v3"></path>
+          <path d="M17 8v3"></path>
+          <path d="M7 4h.01"></path>
+          <path d="M12 4h.01"></path>
+          <path d="M17 4h.01"></path>
+        </svg>
+      );
+
+      const Music = ({ className, size = 24, onClick }) => (
+        <svg
+          className={className}
+          width={size}
+          height={size}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          onClick={onClick}
+        >
+          <path d="M9 18V5l12-2v13"></path>
+          <circle cx="6" cy="18" r="3"></circle>
+          <circle cx="18" cy="16" r="3"></circle>
+        </svg>
+      );
+
+      const Volume2 = ({ className, size = 24, onClick }) => (
+        <svg
+          className={className}
+          width={size}
+          height={size}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          onClick={onClick}
+        >
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+      );
+
+      const VolumeX = ({ className, size = 24, onClick }) => (
+        <svg
+          className={className}
+          width={size}
+          height={size}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          onClick={onClick}
+        >
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <line x1="23" y1="9" x2="17" y2="15"></line>
+          <line x1="17" y1="9" x2="23" y2="15"></line>
+        </svg>
+      );
+
+      const Sparkles = ({ className, size = 24, style, onClick }) => (
+        <svg
+          className={className}
+          width={size}
+          height={size}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          style={style}
+          onClick={onClick}
+        >
+          <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path>
+          <path d="M5 3v4"></path>
+          <path d="M19 17v4"></path>
+          <path d="M3 5h4"></path>
+          <path d="M17 19h4"></path>
+        </svg>
+      );
+
+      const Star = ({ className, style, onClick }) => (
+        <svg
+          className={className}
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          style={style}
+          onClick={onClick}
+        >
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+        </svg>
+      );
+
+      // Komponen Emoji Lucu
+      const Emoji = ({ emoji, className, onClick }) => (
+        <span
+          className={`text-3xl md:text-4xl cursor-pointer ${className}`}
+          onClick={onClick}
+          style={{ animation: "bounce 2s infinite" }}
+        >
+          {emoji}
+        </span>
+      );
+
+      // Komponen Not Musik
+      const MusicNote = ({ className, style }) => (
+        <span className={`text-2xl ${className}`} style={style}>
+          ♪
+        </span>
+      );
+
+      function BirthdayInayatul() {
+        const [currentPage, setCurrentPage] = useState(0);
+        const [hearts, setHearts] = useState([]);
+        const [confetti, setConfetti] = useState([]);
+        const [showMessage, setShowMessage] = useState(false);
+        const [clickCount, setClickCount] = useState(0);
+        const [funnyMessages] = useState([
+          "Wah, kamu rajin banget ngeklik! 😄",
+          "Hati-hati, nanti jari kamu capek! 😂",
+          "Kamu lagi cari aku ya? 😏",
+          "Klik-klik terus nih, penasaran ya? 😏",
+          "Wuzz! Ada superhero di sini! 🦸‍♀️",
+          "Aduh, kamu bikin aku pusing! 😵‍💫",
+          "Hore! Kamu menemukan rahasia! 🎊",
+          "Kamu memang paling jago! 🏆",
+        ]);
+        const [currentFunnyMessage, setCurrentFunnyMessage] = useState("");
+        const [balloons, setBalloons] = useState([]);
+        const [isDragging, setIsDragging] = useState(false);
+        const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+        const [musicNotes, setMusicNotes] = useState([]);
+        const [isMobile, setIsMobile] = useState(false);
+
+        // State untuk musik
+        const [isMusicPlaying, setIsMusicPlaying] = useState(true);
+        const [volume, setVolume] = useState(0.7);
+        const audioRef = useRef(null);
+        const cakeRef = useRef(null);
+
+        // Cek ukuran layar
+        useEffect(() => {
+          const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+          };
+          
+          checkMobile();
+          window.addEventListener('resize', checkMobile);
+          
+          return () => {
+            window.removeEventListener('resize', checkMobile);
+          };
+        }, []);
+
+        // Foto-foto yang sudah disiapkan langsung (ganti dengan URL foto Anda)
+        const [imageUrls] = useState([
+          "./img/foto1.jpg",
+          "./img/foto2.jpg",
+          "./img/foto3.jpg",
+          "./img/foto4.jpg",
+        ]);
+
+        const pages = [
+          { title: "Untuk Seseorang yang Spesial 💙", emoji: "👋" },
+          { title: "Galeri Kenangan Kita 📸", emoji: "🎉" },
+          { title: "Hari Istimewamu 🎂", emoji: "🥳" },
+          { title: "Pesan Spesial 💌", emoji: "💝" },
+        ];
+
+        // Inisialisasi audio
+        useEffect(() => {
+          // Membuat elemen audio
+          audioRef.current = new Audio();
+
+          // Gunakan lagu "Bergema sampai Selamanya" (ganti dengan URL lagu Anda)
+          // Sementara menggunakan lagu birthday sebagai placeholder
+          audioRef.current.src = "./audio/lagu.mp3";
+          audioRef.current.loop = true;
+          audioRef.current.volume = volume;
+
+          // Coba mulai pemutaran musik
+          const playMusic = async () => {
+            try {
+              await audioRef.current.play();
+              setIsMusicPlaying(true);
+              console.log("Musik mulai diputar");
+            } catch (error) {
+              console.log("Autoplay diblokir, menunggu interaksi pengguna");
+            }
+          };
+
+          // Mulai musik setelah sedikit delay
+          setTimeout(() => {
+            playMusic();
+          }, 1000);
+
+          // Bersihkan saat komponen unmount
+          return () => {
+            if (audioRef.current) {
+              audioRef.current.pause();
+              audioRef.current = null;
+            }
+          };
+        }, []);
+
+        // Update volume saat state volume berubah
+        useEffect(() => {
+          if (audioRef.current) {
+            audioRef.current.volume = volume;
+          }
+        }, [volume]);
+
+        // Fungsi untuk toggle musik
+        const toggleMusic = () => {
+          if (audioRef.current) {
+            if (isMusicPlaying) {
+              audioRef.current.pause();
+            } else {
+              audioRef.current
+                .play()
+                .catch((e) => console.log("Gagal memutar musik:", e));
+            }
+            setIsMusicPlaying(!isMusicPlaying);
+          }
+        };
+
+        // Fungsi untuk membuat not musik
+        const createMusicNote = () => {
+          const id = Date.now() + Math.random();
+          const colors = ["#60A5FA", "#3B82F6", "#1D4ED8", "#93C5FD"];
+          const color = colors[Math.floor(Math.random() * colors.length)];
+
+          setMusicNotes((prev) => [
+            ...prev,
+            {
+              id,
+              x: Math.random() * 90 + 5, // 5-95%
+              y: 100,
+              color,
+              size: Math.random() * 30 + 20,
+              speed: Math.random() * 3 + 1,
+            },
+          ]);
+
+          setTimeout(() => {
+            setMusicNotes((prev) => prev.filter((n) => n.id !== id));
+          }, 3000);
+        };
+
+        // Animasi not musik naik
+        useEffect(() => {
+          if (isMusicPlaying) {
+            const interval = setInterval(() => {
+              setMusicNotes((prev) =>
+                prev
+                  .map((note) => ({
+                    ...note,
+                    y: note.y - note.speed,
+                  }))
+                  .filter((note) => note.y > -10)
+              );
+
+              // Buat not musik baru secara acak
+              if (Math.random() > 0.7) {
+                createMusicNote();
+              }
+            }, 50);
+
+            return () => clearInterval(interval);
+          }
+        }, [isMusicPlaying, musicNotes.length]);
+
+        // Efek untuk pesan lucu
+        useEffect(() => {
+          if (clickCount > 0 && clickCount % 10 === 0) {
+            const randomIndex = Math.floor(
+              Math.random() * funnyMessages.length
+            );
+            setCurrentFunnyMessage(funnyMessages[randomIndex]);
+
+            // Hilangkan pesan setelah 3 detik
+            setTimeout(() => {
+              setCurrentFunnyMessage("");
+            }, 3000);
+          }
+        }, [clickCount]);
+
+        // Efek untuk halaman terakhir
+        useEffect(() => {
+          if (currentPage === 3 && !showMessage) {
+            const timer = setTimeout(() => setShowMessage(true), 500);
+            return () => clearTimeout(timer);
+          }
+
+          // Tambahkan balon saat halaman berubah
+          if (currentPage === 2 || currentPage === 3) {
+            createBalloons();
+          }
+        }, [currentPage]);
+
+        // Fungsi untuk membuat hati
+        const createHeart = (x, y) => {
+          const id = Date.now() + Math.random();
+          const colors = [
+            "#60A5FA",
+            "#3B82F6",
+            "#1D4ED8",
+            "#93C5FD",
+            "#DBEAFE",
+          ];
+          const color = colors[Math.floor(Math.random() * colors.length)];
+
+          setHearts((prev) => [
+            ...prev,
+            {
+              id,
+              x,
+              y,
+              color,
+              size: Math.random() * 20 + 20,
+              rotation: Math.random() * 360,
+            },
+          ]);
+
+          setTimeout(() => {
+            setHearts((prev) => prev.filter((h) => h.id !== id));
+          }, 2000);
+
+          setClickCount((prev) => prev + 1);
+        };
+
+        // Fungsi untuk membuat konfeti
+        const createConfetti = () => {
+          const newConfetti = Array.from({ length: 80 }, (_, i) => ({
+            id: Date.now() + i,
+            x: Math.random() * 100,
+            y: -10,
+            delay: Math.random() * 0.5,
+            color: [
+              "#60A5FA",
+              "#3B82F6",
+              "#1D4ED8",
+              "#93C5FD",
+              "#A78BFA",
+              "#F472B6",
+              "#FBBF24",
+            ][Math.floor(Math.random() * 7)],
+            shape: Math.random() > 0.5 ? "circle" : "square",
+            size: Math.random() * 10 + 5,
+          }));
+          setConfetti(newConfetti);
+          setTimeout(() => setConfetti([]), 3000);
+
+          setClickCount((prev) => prev + 1);
+        };
+
+        // Fungsi untuk membuat balon
+        const createBalloons = () => {
+          const newBalloons = Array.from({ length: 15 }, (_, i) => ({
+            id: Date.now() + i,
+            x: Math.random() * 90 + 5,
+            y: 100,
+            speed: Math.random() * 2 + 1,
+            color: ["#60A5FA", "#3B82F6", "#1D4ED8", "#93C5FD", "#A78BFA"][
+              Math.floor(Math.random() * 5)
+            ],
+            size: Math.random() * 40 + 30,
+          }));
+          setBalloons(newBalloons);
+
+          // Hapus balon setelah 10 detik
+          setTimeout(() => {
+            setBalloons([]);
+          }, 10000);
+        };
+
+        // Animasi balon naik
+        useEffect(() => {
+          const interval = setInterval(() => {
+            setBalloons((prev) =>
+              prev
+                .map((balloon) => ({
+                  ...balloon,
+                  y: balloon.y - balloon.speed,
+                }))
+                .filter((balloon) => balloon.y > -20)
+            );
+          }, 50);
+
+          return () => clearInterval(interval);
+        }, [balloons.length]);
+
+        // Fungsi untuk drag and drop
+        const handleDragStart = (e) => {
+          setIsDragging(true);
+          setDragOffset({
+            x: e.clientX - (cakeRef.current?.offsetLeft || 0),
+            y: e.clientY - (cakeRef.current?.offsetTop || 0),
+          });
+        };
+
+        const handleDrag = (e) => {
+          if (isDragging && cakeRef.current) {
+            cakeRef.current.style.left = `${e.clientX - dragOffset.x}px`;
+            cakeRef.current.style.top = `${e.clientY - dragOffset.y}px`;
+            cakeRef.current.style.position = "fixed";
+          }
+        };
+
+        const handleDragEnd = () => {
+          setIsDragging(false);
+          if (cakeRef.current) {
+            cakeRef.current.style.position = "";
+            cakeRef.current.style.left = "";
+            cakeRef.current.style.top = "";
+          }
+        };
+
+        return (
+          <div
+            className="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-blue-200 relative overflow-hidden"
+            onClick={(e) => {
+              createHeart(e.clientX, e.clientY);
+              // Buat not musik saat diklik
+              if (isMusicPlaying && Math.random() > 0.5) {
+                createMusicNote();
+              }
+            }}
+            onMouseMove={(e) => {
+              // efek random heart
+              if (Math.random() > 0.99) createHeart(e.clientX, e.clientY);
+
+              // drag
+              handleDrag(e);
+            }}
+            onMouseUp={handleDragEnd}
+            onTouchMove={(e) => {
+              // Untuk touch devices
+              if (e.touches.length === 1) {
+                const touch = e.touches[0];
+                if (Math.random() > 0.99) createHeart(touch.clientX, touch.clientY);
+                handleDrag(touch);
+              }
+            }}
+            onTouchEnd={handleDragEnd}
+          >
+            {/* Latar belakang dinamis */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              {/* Bintang berkedip */}
+              {[...Array(20)].map((_, i) => (
+                <Star
+                  key={i}
+                  className="absolute text-blue-300 animate-pulse"
+                  style={{
+                    top: `${Math.random() * 100}%`,
+                    left: `${Math.random() * 100}%`,
+                    animationDelay: `${Math.random() * 2}s`,
+                    fontSize: `${Math.random() * 15 + 8}px`,
+                  }}
+                />
+              ))}
+
+              {/* Pola biru lucu */}
+              <div
+                className="absolute top-10 left-10 w-32 h-32 rounded-full bg-blue-200/30 animate-spin hidden md:block"
+                style={{ animationDuration: "20s" }}
+              ></div>
+              <div
+                className="absolute bottom-20 right-10 w-40 h-40 rounded-full bg-blue-300/20 animate-spin hidden md:block"
+                style={{
+                  animationDuration: "25s",
+                  animationDirection: "reverse",
+                }}
+              ></div>
+            </div>
+
+            {/* Hati berterbangan */}
+            {hearts.map((heart) => (
+              <Heart
+                key={heart.id}
+                className="absolute pointer-events-none"
+                style={{
+                  left: heart.x,
+                  top: heart.y,
+                  color: heart.color,
+                  animation: `float 2s ease-out forwards`,
+                  fontSize: `${heart.size}px`,
+                  transform: `rotate(${heart.rotation}deg)`,
+                }}
+                size={heart.size}
+                fill={heart.color}
+              />
+            ))}
+
+            {/* Konfeti */}
+            {confetti.map((c) => (
+              <div
+                key={c.id}
+                className={`absolute pointer-events-none rounded-${
+                  c.shape === "circle" ? "full" : "lg"
+                }`}
+                style={{
+                  left: `${c.x}%`,
+                  top: `${c.y}%`,
+                  backgroundColor: c.color,
+                  width: `${c.size}px`,
+                  height: `${c.size}px`,
+                  animation: `confetti-fall 3s ease-out ${c.delay}s forwards`,
+                }}
+              />
+            ))}
+
+            {/* Not musik berterbangan */}
+            {isMusicPlaying &&
+              musicNotes.map((note) => (
+                <MusicNote
+                  key={note.id}
+                  className="absolute pointer-events-none font-bold"
+                  style={{
+                    left: `${note.x}%`,
+                    top: `${note.y}%`,
+                    color: note.color,
+                    fontSize: `${note.size}px`,
+                    animation: "musicNote 1.5s ease-in-out infinite",
+                    animationDelay: `${Math.random() * 0.5}s`,
+                  }}
+                />
+              ))}
+
+            {/* Balon */}
+            {balloons.map((balloon) => (
+              <div
+                key={balloon.id}
+                className="absolute pointer-events-none"
+                style={{
+                  left: `${balloon.x}%`,
+                  top: `${balloon.y}%`,
+                  width: `${balloon.size}px`,
+                  height: `${balloon.size * 1.3}px`,
+                  backgroundColor: balloon.color,
+                  borderRadius: "50% 50% 50% 50% / 60% 60% 40% 40%",
+                  opacity: 0.8,
+                  boxShadow: "inset -5px -5px 10px rgba(0,0,0,0.1)",
+                }}
+              >
+                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-20 bg-gray-300"></div>
+              </div>
+            ))}
+
+            {/* Kontrol Musik - Responsif */}
+            <div className={`fixed z-50 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-full shadow-2xl flex items-center ${
+              isMobile 
+                ? "top-2 left-1/2 transform -translate-x-1/2 w-11/12 max-w-sm p-2" 
+                : "top-4 left-4 p-3 space-x-3"
+            }`}>
+              <button
+                onClick={toggleMusic}
+                className={`p-2 rounded-full bg-blue-500 hover:bg-blue-400 transition-colors ${
+                  isMobile ? "mr-2" : ""
+                }`}
+              >
+                {isMusicPlaying ? (
+                  <Volume2 className="w-5 h-5 md:w-6 md:h-6" />
+                ) : (
+                  <VolumeX className="w-5 h-5 md:w-6 md:h-6" />
+                )}
+              </button>
+              
+              <div className="flex items-center space-x-2 flex-1">
+                <span className="text-xs md:text-sm font-bold">Vol:</span>
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.1"
+                  value={volume}
+                  onChange={(e) => setVolume(parseFloat(e.target.value))}
+                  className="flex-1 accent-blue-300"
+                />
+                <span className="text-xs w-8 md:w-10">
+                  {Math.round(volume * 100)}%
+                </span>
+              </div>
+              
+              {!isMobile && (
+                <>
+                  <div className="flex items-center space-x-1">
+                    <Music className="w-5 h-5 text-blue-200" />
+                    <span className="text-sm font-bold">
+                      Bergema sampai Selamanya
+                    </span>
+                  </div>
+                  
+                  <div
+                    className={`w-3 h-3 rounded-full ${
+                      isMusicPlaying ? "bg-green-400 animate-pulse" : "bg-red-400"
+                    }`}
+                  ></div>
+                </>
+              )}
+            </div>
+
+            <div className={`container mx-auto px-4 py-8 relative z-10 ${
+              isMobile ? "pt-24" : "pt-20"
+            }`}>
+              {/* Header */}
+              <div className="text-center mb-6 md:mb-8">
+                <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-blue-800 mb-3 md:mb-4 font-['Dancing_Script']">
+                  Happy Birthday! 🎂
+                </h1>
+                <div className="inline-block bg-gradient-to-r from-blue-500 to-blue-700 text-white text-xl md:text-3xl lg:text-4xl px-4 md:px-8 py-2 md:py-4 rounded-full shadow-xl transform hover:scale-105 transition-transform duration-300">
+                  <span className="animate-pulse">Inayatul Maula</span> 💙
+                </div>
+                <div className="mt-3 md:mt-4 flex justify-center space-x-2 md:space-x-4">
+                  <Emoji emoji="🎈" onClick={() => createBalloons()} />
+                  <Emoji emoji="🎊" onClick={createConfetti} />
+                  <Emoji emoji="🎁" onClick={() => setCurrentPage(1)} />
+                  <Emoji emoji="🥳" onClick={() => setCurrentPage(2)} />
+                </div>
+              </div>
+
+              {/* Navigation dots dengan ikon - Responsif */}
+              <div className="flex justify-center gap-2 md:gap-4 mb-6 md:mb-8 overflow-x-auto py-2">
+                {pages.map((page, index) => (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      setCurrentPage(index);
+                      if (index === 2) createConfetti();
+                    }}
+                    className={`flex flex-col items-center transition-all flex-shrink-0 ${
+                      currentPage === index
+                        ? "scale-105"
+                        : "scale-90 hover:scale-95"
+                    }`}
+                  >
+                    <div
+                      className={`w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center text-xl md:text-2xl ${
+                        currentPage === index
+                          ? "bg-blue-600 text-white"
+                          : "bg-blue-200 text-blue-700"
+                      }`}
+                    >
+                      {page.emoji}
+                    </div>
+                    <span
+                      className={`mt-1 md:mt-2 font-bold text-xs md:text-sm text-center max-w-[80px] md:max-w-none ${
+                        currentPage === index
+                          ? "text-blue-700"
+                          : "text-blue-500"
+                      }`}
+                    >
+                      {page.title}
+                    </span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Konten halaman */}
+              <div className="max-w-5xl mx-auto">
+                {/* Halaman 1: Intro */}
+                {currentPage === 0 && (
+                  <div className="bg-gradient-to-br from-white to-blue-50 rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl p-6 md:p-8 lg:p-12 border-4 md:border-8 border-blue-300">
+                    <div className="text-center">
+                      <div
+                        className="text-6xl md:text-8xl mb-4 md:mb-6 animate-wiggle"
+                        style={{ animationDuration: "2s" }}
+                      >
+                        👋💙
+                      </div>
+                      <h2 className="text-3xl md:text-5xl font-bold text-blue-800 mb-4 md:mb-6 font-['Dancing_Script']">
+                        Hai Sayangg! 💙
+                      </h2>
+                      <p className="text-lg md:text-2xl text-blue-700 leading-relaxed mb-6 md:mb-8">
+                        Hari ini adalah hari yang spesial banget! Kenapa? Karena
+                        hari ini...
+                      </p>
+                      <div className="bg-blue-100 rounded-xl md:rounded-2xl p-4 md:p-6 mb-6 md:mb-8 border-2 md:border-4 border-blue-300">
+                        <p className="text-2xl md:text-3xl font-bold text-blue-800">
+                          🎉 ULANG TAHUNMU! 🎉
+                        </p>
+                      </div>
+                      <p className="text-base md:text-xl text-blue-600 mb-6 md:mb-8">
+                        Dengan iringan lagu "Bergema sampai Selamanya", aku
+                        siapin kejutan spesial buat kamu! 🎵
+                      </p>
+                      <button
+                        onClick={() => {
+                          setCurrentPage(1);
+                          createConfetti();
+                        }}
+                        className="bg-gradient-to-r from-blue-400 to-blue-600 text-white px-6 md:px-10 py-4 md:py-6 rounded-full font-bold text-lg md:text-2xl hover:scale-105 transition-transform shadow-xl md:shadow-2xl animate-bounce border-2 md:border-4 border-blue-300"
+                      >
+                        Lihat Kejutan Pertama! 🎁
+                      </button>
+                      <div className="mt-6 md:mt-8 text-blue-500 text-sm md:text-base">
+                        <p>💡 Klik di mana saja untuk buat hati biru!</p>
+                        <p>🎵 Not musik akan muncul saat musik diputar!</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Halaman 2: Galeri Foto - RESPONSIF DENGAN GAMBAR KEDUA TURUN */}
+                {currentPage === 1 && (
+                  <div className="bg-gradient-to-br from-white to-blue-50 rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl p-6 md:p-8 lg:p-12 border-4 md:border-8 border-blue-300">
+                    <div className="text-center mb-6 md:mb-8">
+                      <div
+                        className="text-6xl md:text-8xl mb-3 md:mb-4 animate-float"
+                        style={{ animationDuration: "3s" }}
+                      >
+                        📸💙
+                      </div>
+                      <h2 className="text-3xl md:text-5xl font-bold text-blue-800 mb-3 md:mb-4 font-['Dancing_Script']">
+                        Galeri Kenangan! 📸
+                      </h2>
+                      <p className="text-base md:text-xl text-blue-600 mb-2">
+                        Lihat foto-foto spesial dengan iringan lagu "Bergema
+                        sampai Selamanya"! 🎶
+                      </p>
+                      <p className="text-sm md:text-lg text-blue-500">
+                        (Foto-foto yang aku siapin spesial buat kamu! 😘)
+                      </p>
+                    </div>
+                    
+                    {/* Grid Foto Responsif */}
+                    <div className="space-y-8 md:space-y-0 md:grid md:grid-cols-2 md:gap-6 lg:gap-8 mb-6 md:mb-8">
+                      {imageUrls.map((url, index) => (
+                        <div
+                          key={index}
+                          className={`relative group transform hover:scale-105 transition-transform duration-300 w-full ${
+                            index === 1 ? "md:mt-8" : ""
+                          }`}
+                        >
+                          <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl md:rounded-2xl p-1 shadow-lg md:shadow-xl">
+                            <div className="w-full h-60 md:h-72 lg:h-80 overflow-hidden rounded-lg md:rounded-xl relative">
+                              <img
+                                src={url}
+                                alt={`Memory ${index + 1}`}
+                                className="w-full h-full object-cover border-2 md:border-4 border-white cursor-pointer"
+
+                                onClick={() => {
+                                  createConfetti();
+                                  setClickCount((prev) => prev + 1);
+                                }}
+                              />
+                              {/* Overlay untuk deskripsi */}
+                              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-blue-900/70 to-transparent p-3 md:p-4 rounded-b-lg md:rounded-b-xl">
+                                <p className="text-white text-sm md:text-base font-bold">
+                                  Momen {index + 1} yang spesial 💙
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          {/* Angka di pojok kanan atas */}
+                          <div className="absolute -top-2 -right-2 md:-top-3 md:-right-3 bg-blue-500 text-white rounded-full w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 flex items-center justify-center font-bold text-base md:text-lg lg:text-xl shadow-lg">
+                            {index + 1}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    <div className="text-center">
+                      <button
+                        onClick={() => setCurrentPage(2)}
+                        className="bg-gradient-to-r from-blue-400 to-blue-600 text-white px-6 md:px-10 py-3 md:py-5 rounded-full font-bold text-base md:text-xl hover:scale-105 transition-transform shadow-xl md:shadow-2xl border-2 md:border-4 border-blue-300"
+                      >
+                        Lanjut ke Kue Ulang Tahun! 🎂
+                      </button>
+                      <div className="mt-4 md:mt-6 text-blue-500 text-sm md:text-base">
+                        <p>🎯 Klik setiap foto untuk ledakan konfeti biru!</p>
+                        <p>🎵 Musik akan terus mengiringi setiap momen!</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Halaman 3: Kue Ulang Tahun */}
+                {currentPage === 2 && (
+                  <div className="bg-gradient-to-br from-white to-blue-50 rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl p-6 md:p-8 lg:p-12 border-4 md:border-8 border-blue-300">
+                    <div className="text-center">
+                      <div
+                        ref={cakeRef}
+                        className="inline-block cursor-move animate-float"
+                        style={{ animationDuration: "4s" }}
+                        onMouseDown={handleDragStart}
+                        onTouchStart={handleDragStart}
+                      >
+                        <div className="text-6xl md:text-8xl mb-4">🎂</div>
+                      </div>
+                      <h2 className="text-3xl md:text-5xl font-bold text-blue-800 mb-4 md:mb-6 font-['Dancing_Script']">
+                        Waktunya Tiup Lilin! 🕯️
+                      </h2>
+                      <p className="text-lg md:text-2xl text-blue-700 mb-6 md:mb-8">
+                        Dengan iringan lagu "Bergema sampai Selamanya", ayo
+                        pejamkan mata, buat harapan, dan...
+                      </p>
+                      <div className="flex justify-center space-x-3 md:space-x-4 mb-6 md:mb-8">
+                        <div className="text-3xl md:text-4xl animate-bounce">🎈</div>
+                        <div
+                          className="text-3xl md:text-4xl animate-bounce"
+                          style={{ animationDelay: "0.2s" }}
+                        >
+                          🎊
+                        </div>
+                        <div
+                          className="text-3xl md:text-4xl animate-bounce"
+                          style={{ animationDelay: "0.4s" }}
+                        >
+                          🎉
+                        </div>
+                        <div
+                          className="text-3xl md:text-4xl animate-bounce"
+                          style={{ animationDelay: "0.6s" }}
+                        >
+                          🥳
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => {
+                          setCurrentPage(3);
+                          createConfetti();
+                          createBalloons();
+                        }}
+                        className="bg-gradient-to-r from-blue-400 to-blue-600 text-white px-8 md:px-12 py-5 md:py-7 rounded-full font-bold text-xl md:text-3xl hover:scale-105 transition-transform shadow-xl md:shadow-2xl animate-pulse border-2 md:border-4 border-blue-300"
+                      >
+                        TIUP LILINNYA! 💨
+                      </button>
+                      <div className="mt-6 md:mt-8 text-blue-500 text-sm md:text-base">
+                        <p>✨ Drag kuenya ke mana aja yang kamu mau!</p>
+                        <p>🎵 Musik akan bergema sampai selamanya!</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Halaman 4: Pesan Spesial */}
+                {currentPage === 3 && (
+                  <div className="bg-gradient-to-br from-white to-blue-50 rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl p-6 md:p-8 lg:p-12 border-4 md:border-8 border-blue-300">
+                    <div className="text-center">
+                      <div
+                        className="text-6xl md:text-8xl mb-4 md:mb-6 animate-spin"
+                        style={{ animationDuration: "10s" }}
+                      >
+                        💌
+                      </div>
+                      <h2 className="text-3xl md:text-5xl font-bold text-blue-800 mb-4 md:mb-6 font-['Dancing_Script']">
+                        Pesan Spesial Buat Kamu 💙
+                      </h2>
+                      {showMessage && (
+                        <div className="space-y-4 md:space-y-6 text-base md:text-xl text-blue-700 leading-relaxed animate-fade-in">
+                          <div className="bg-blue-100 rounded-xl md:rounded-2xl p-4 md:p-6 border-2 md:border-4 border-blue-300">
+                            <p className="text-2xl md:text-3xl font-bold text-blue-800 mb-3 md:mb-4">
+                              Dear, Inayatul Maula...
+                            </p>
+                            <p className="mb-3 md:mb-4">
+                              <span className="text-xl md:text-2xl">🎉</span> Selamat ulang
+                              tahun sayangg! Semoga di usia kamu yang baru ini,
+                              kamu selalu diberikan kesehatan, kebahagiaan, dan
+                              semua yang terbaik dalam hidup.
+                            </p>
+                            <p className="mb-3 md:mb-4">
+                              <span className="text-xl md:text-2xl">💙</span> Terima kasih
+                              sudah menjadi bagian penting dalam hidupku. Setiap
+                              hari bersamamu adalah hadiah yang sangat berharga.
+                            </p>
+                            <p className="mb-3 md:mb-4">
+                              <span className="text-xl md:text-2xl">✨</span> Aku berharap
+                              semua impian dan cita-cita kamu bisa terwujud. Aku
+                              akan selalu ada di sampingmu untuk mendukungmu.
+                            </p>
+                            <p className="text-2xl md:text-3xl font-bold text-blue-800 mt-6 md:mt-8 animate-pulse">
+                              I LOVE YOU SO MUCH! 💙💙💙
+                            </p>
+                            <div className="mt-4 md:mt-6 pt-4 md:pt-6 border-t-2 border-blue-300">
+                              <p className="text-lg md:text-xl text-blue-600 italic">
+                                "Seperti lagu 'Bergema sampai Selamanya',
+                                cintaku padamu juga akan bergema selamanya..."
+                                🎵
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4 lg:space-x-6 mt-6 md:mt-8">
+                            <button
+                              onClick={() => {
+                                setCurrentPage(0);
+                                createConfetti();
+                                createBalloons();
+                              }}
+                              className="bg-gradient-to-r from-blue-300 to-blue-500 text-blue-900 px-6 md:px-8 py-3 md:py-4 rounded-full font-bold text-base md:text-lg hover:scale-105 transition-transform shadow-lg border-2 md:border-4 border-blue-200"
+                            >
+                              Mulai dari Awal 🔄
+                            </button>
+                            <button
+                              onClick={() => {
+                                setCurrentPage(1);
+                                createConfetti();
+                              }}
+                              className="bg-gradient-to-r from-blue-400 to-blue-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-bold text-base md:text-lg hover:scale-105 transition-transform shadow-lg border-2 md:border-4 border-blue-300"
+                            >
+                              Lihat Foto Lagi 📸
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Petunjuk interaksi - Responsif */}
+              <div className="text-center mt-6 md:mt-10">
+                <div className="inline-block bg-blue-800 text-white px-4 md:px-6 py-2 md:py-3 rounded-full shadow-lg max-w-full">
+                  <p className="font-bold text-xs md:text-sm">
+                    🎵 Musik "Bergema sampai Selamanya" sedang diputar! | 
+                    <br className="md:hidden" /> 💡 Klik untuk hati biru! | 
+                    <br className="md:hidden" /> 🎯 Klik tombol untuk konfeti!
+                  </p>
+                </div>
+              </div>
+
+              {/* Counter klik lucu - Responsif */}
+              <div className={`fixed bg-blue-600 text-white rounded-full shadow-lg z-50 ${
+                isMobile 
+                  ? "bottom-2 right-2 px-3 py-1 text-xs" 
+                  : "bottom-4 right-4 px-4 py-2 text-sm"
+              }`}>
+                <p className="font-bold">
+                  Klik: {clickCount} | 💙: {hearts.length} {!isMobile && "| 🎵: "}
+                  {!isMobile && musicNotes.length}
+                </p>
+              </div>
+
+              {/* Pesan lucu - Responsif */}
+              {currentFunnyMessage && (
+                <div className={`fixed bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-2xl shadow-xl font-bold animate-shake z-50 border-4 border-blue-300 ${
+                  isMobile
+                    ? "top-16 left-2 right-2 mx-auto max-w-xs px-4 py-3 text-sm"
+                    : "top-20 right-4 px-6 py-3 text-lg max-w-xs"
+                }`}>
+                  <div className="flex items-center">
+                    <span className="text-xl md:text-2xl mr-2">😄</span>
+                    <span>{currentFunnyMessage}</span>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      }
+
+      // Render aplikasi
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<BirthdayInayatul />);
+    </script>
+  </body>
+</html>
